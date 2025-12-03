@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aventura en el Reino de Mery</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header id="titulo-principal">
+    <h1 class="titulo-juego">Aventuras En El Reino De MeryLand</header>
+  <div id="contenedor-juego">
+
+    <!-- Escena 1: Inicio -->
+    <section id="escena-inicio" class="scene active">
+      <div id="inicio-top-area">
+        <div class="jugador-avatar-large">
+          <img src="./img/jugador/maria.png" alt="Cazador">
+        </div>
+        <h1 id="cazador-titulo">Cazador</h1> 
+      </div>
+
+      <div id="inicio-boton-area">
+        <div id="jugador-stats-grid">
+          <div class="stat-box">
+            <p>Ataque: <span id="inicio-ataque">0</span></p>
+          </div>
+          <div class="stat-box">
+            <p>Defensa: <span id="inicio-defensa">0</span></p>
+          </div>
+          <div class="stat-box">
+            <p>Vida: <span id="inicio-vida">0</span></p>
+          </div>
+          <div class="stat-box">
+            <p>Puntos: <span id="inicio-puntos">0</span></p>
+          </div>
+        </div>
+        <button id="btn-iniciar-aventura" class="btn-primary">Continuar</button>
+      </div>
+    </section>
+
+    <!-- Escena 2 Mercado -->
+    <section id="escena-mercado" class="scene">
+      <div class="scene-header">
+        <h2 class="mercado-titulo">Mercado</h2>
+      </div>
+      <div class="scene-contenido">
+        <div id="lista-productos" class="grid-productos"></div>
+
+        <!-- Oferta y resumen -->
+        <div id="oferta-wrapper" style="width:80%; max-width:1000px;">
+          <p style="color:#fff; margin-bottom:8px; font-weight:bold;">Oferta: 20% descuento en todos los productos seleccionados</p>
+          <!-- Descuento aplicado automáticamente al seleccionar productos -->
+          <div id="resumen-oferta" style="color:#fff; background: rgba(0,0,0,0.15); padding:10px; border-radius:6px;">
+            <p>Total seleccionado: <span id="total-seleccion">0 €</span></p>
+            <p>Descuento aplicado: <span id="total-descuento">0 €</span></p>
+            <p>Total con descuento: <span id="total-con-descuento">0 €</span></p>
+          </div>
+        </div>
+
+        <div class="mercado-footer">
+          <button id="btn-ir-estado" class="btn-primary">Continuar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Escena 3 Perfil Actualizado -->
+    <section id="escena-estado" class="scene">
+      <div id="estado-top-area">
+        <div class="jugador-avatar-large">
+          <img src="./img/jugador/maria.png" alt="Cazador">
+        </div>
+        <h1 id="estado-titulo">Cazador</h1>
+      </div>
+
+      <div id="estado-boton-area">
+        <div id="estado-stats-grid">
+          <div class="stat-box">
+            <p>Ataque: <span id="estado-ataque">0</span></p>
+          </div>
+          <div class="stat-box">
+            <p>Defensa: <span id="estado-defensa">0</span></p>
+          </div>
+          <div class="stat-box">
+            <p>Vida: <span id="estado-vida">0</span></p>
+          </div>
+          <div class="stat-box">
+            <p>Puntos: <span id="estado-puntos">0</span></p>
+          </div>
+        </div>
+        <button id="btn-ir-enemigos-2" class="btn-primary">Continuar</button>
+      </div>
+    </section>
+
+    <!-- Escena 4 Enemigos  -->
+    <section id="escena-enemigos" class="scene">
+      <div class="scene-header">
+        <h2>Enemigos</h2>
+      </div>
+      <div class="scene-contenido">
+        <div id="lista-enemigos" class="grid-enemigos"></div>
+        <button id="btn-empezar-batallas" class="btn-primary">Continuar</button>
+      </div>
+    </section>
+
+    <!-- Escena 5 Combates -->
+    <section id="escena-batallas" class="scene">
+      <div class="scene-header">
+        <h2>Combates</h2>
+      </div>
+      <div class="scene-contenido">
+        <div id="resultado-combate" class="resultado-combate"></div>
+        <button id="btn-siguiente-combate" class="btn-primary">Continuar</button>
+      </div>
+    </section>
+
+    <!-- Ecena 6 Resulltado -->
+    <section id="escena-final" class="scene">
+      <div class="scene-header">
+        <h2>Resultado Final</h2>
+      </div>
+      <div class="scene-contenido">
+        <h3 id="final-rango"></h3>
+        <p>Puntos totales: <span id="final-puntos">0</span></p>
+        <button id="btn-reiniciar" class="btn-primary">Reiniciar</button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Inventario - Footer -->
+  <footer>
+    <div id="inventory-container">
+      <div class="inventario-slot-vacio"></div>
+      <div class="inventario-slot-vacio"></div>
+      <div class="inventario-slot-vacio"></div>
+      <div class="inventario-slot-vacio"></div>
+      <div class="inventario-slot-vacio"></div>
+      <div class="inventario-slot-vacio"></div>
+    </div>
+  </footer>
+
+  <!-- Efecto Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+
+</html>
