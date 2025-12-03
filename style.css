@@ -775,22 +775,175 @@ width: 200px;
   min-width: 200px;
 }
 
-@media (max-width: 768px) {
+
+/* ---------------LAS MEDIAS -------------------- */
+
+/* Media query para pantallas pequeñas (360px) */
+@media (max-width: 360px) {
+  .titulo-juego {
+    font-size: 20px;
+    letter-spacing: 1px;
+    padding: 10px;
+  }
+  
+  #titulo-principal {
+    padding: 10px;
+  }
+  
   #jugador-stats-grid, #estado-stats-grid { 
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .stat-box {
+    padding: 15px 10px;
+    font-size: 16px;
   }
   
   #inicio-top-area, #estado-top-area { 
     justify-content: center; 
     align-items: center; 
     height: auto; 
+    flex-direction: column;
+    padding: 10px;
   }
   
   #cazador-titulo, #estado-titulo { 
     align-self: center; 
     position: static; 
     margin-right: 0; 
-    margin-bottom: 15px; 
+    margin-bottom: 10px;
+    font-size: 20px;
+    top: auto;
+    right: auto;
+  }
+  
+  .jugador-avatar-large { 
+    margin-left: 0; 
+    margin-right: 0;
+    width: 100px;
+    height: 100px;
+  }
+
+  /* Hacer que toda la escena tenga scroll */
+  #escena-inicio, #escena-estado {
+    overflow-y: auto;
+  }
+  
+  #inicio-boton-area, #estado-boton-area {
+    padding: 20px 10px;
+    min-height: auto;
+  }
+
+  .grid-productos { 
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  
+  .product-card {
+    padding: 10px;
+  }
+  
+  .grid-enemigos { 
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  
+  .combate-visual {
+    flex-direction: column;
+    gap: 20px;
+    overflow: visible;
+  }
+  
+  .combatiente {
+    width: 150px;
+  }
+  
+  .combatiente img {
+    width: 140px;
+    height: 140px;
+  }
+  
+  #inventory-container {
+    grid-template-columns: repeat(3, 1fr);
+    width: 90%;
+    gap: 8px;
+    padding: 6px;
+    min-height: 20px;
+  }
+  
+  .inventario-item, .inventario-slot-vacio {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+  
+  .inventario-item img {
+    width: 60%;
+    height: 60%;
+  }
+  
+  footer {
+    padding: 4px 0;
+  }
+  
+  button, .btn-primary, .btn-comprar {
+    padding: 12px 30px;
+    min-width: 150px;
+    font-size: 12px;
+  }
+  
+  .scene-header {
+    padding: 15px 10px;
+    font-size: 18px;
+  }
+  
+  .scene-contenido {
+    padding: 10px;
+  }
+  
+  .grid-cesta {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+  }
+  
+  .cesta-wrapper {
+    width: 100%;
+    padding: 0 10px;
+  }
+  
+  .mercado-footer {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+  }
+}
+
+/* Media query para pantallas medianas (720px) */
+@media (max-width: 720px) and (min-width: 361px) {
+  .titulo-juego {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+  
+  #jugador-stats-grid, #estado-stats-grid { 
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  
+  #inicio-top-area, #estado-top-area { 
+    justify-content: center; 
+    align-items: center; 
+    height: auto;
+    flex-direction: column;
+  }
+  
+  #cazador-titulo, #estado-titulo { 
+    align-self: center; 
+    position: static; 
+    margin-right: 0; 
+    margin-bottom: 15px;
+    top: auto;
+    right: auto;
   }
   
   .jugador-avatar-large { 
@@ -798,17 +951,62 @@ width: 200px;
     margin-right: 0; 
   }
 
+  /* Hacer que toda la escena tenga scroll */
+  #escena-inicio, #escena-estado {
+    overflow-y: auto;
+  }
+  
+  #inicio-boton-area, #estado-boton-area {
+    padding: 20px;
+    min-height: auto;
+  }
+
   .grid-productos { 
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+    grid-template-columns: repeat(2, 1fr);
+    width: 95%;
   }
   
   .grid-enemigos { 
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    grid-template-columns: repeat(2, 1fr);
+    width: 95%;
   }
   
   .combate-visual {
-    flex-direction: column;
-    gap: 30px;
+    flex-direction: row;
+    gap: 20px;
     overflow: visible;
+  }
+  
+  #inventory-container {
+    grid-template-columns: repeat(4, 1fr);
+    width: 70%;
+    gap: 12px;
+    padding: 8px;
+  }
+  
+  .grid-cesta {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  footer {
+    padding: 5px 0;
+  }
+}
+
+/* Media query para pantallas grandes (1024px) */
+@media (max-width: 1024px) and (min-width: 721px) {
+  .grid-productos { 
+    grid-template-columns: repeat(3, 1fr);
+    width: 90%;
+  }
+  
+  .grid-enemigos { 
+    grid-template-columns: repeat(3, 1fr);
+    width: 95%;
+  }
+  
+  #inventory-container {
+    width: 60%;
+    gap: 15px;
   }
 }
