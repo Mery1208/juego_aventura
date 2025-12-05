@@ -15,12 +15,15 @@ export class Jugador {
      * @param {number} [config.vida=100] - Puntos de vida base
      * @param {number} [config.puntos=0] - Puntos iniciales
      */
-     constructor({nombre, avatar, vida= 100, puntos = 0 }) {
+     constructor({nombre, avatar, vida= 100,ataque = 0, defensa = 0, puntos = 0 }) {
         this.nombre = nombre;
         this.avatar = avatar;
         this.vidaBase = vida;
+        this.ataqueBase = ataque;
+        this.defensaBase = defensa;
         this.puntos = puntos;
         this.inventario = []; //es el inventario donde estará los productos que compre luego
+        
     }
     
     //Objetivo: Intento añadir un objeto a mi mochila (inventario).
@@ -62,32 +65,26 @@ export class Jugador {
     }
 
       // Calculo cuánto ataque tengo en total.
-    getAtaqueTotal() {
-        // Sumé todos los bonus que dan los objetos de tipo Arma que llevo.
+     getAtaqueTotal() {
         const bonusArmas = this.inventario
-        .filter(producto => producto.tipo === TIPOS.ARMA)
-        .reduce((acumulador, producto) => acumulador + producto.bonus, 0);
-        // Como mi ataque base es 0, el total es solo lo que me dan las armas.
-        return 0 + bonusArmas;
+            .filter(producto => producto.tipo === TIPOS.ARMA)
+            .reduce((acumulador, producto) => acumulador + producto.bonus, 0);
+        return this.ataqueBase + bonusArmas;
     }
 
     // Calculo cuánta defensa tengo en total.
-     getDefensaTotal() {
-        // Sumé todos los bonus que dan los objetos de tipo Armadura que llevo.
+    getDefensaTotal() {
         const bonusArmadura = this.inventario
-        .filter(producto => producto.tipo === TIPOS.ARMADURA)
-        .reduce((acumulador, producto) => acumulador + producto.bonus, 0);
-        // Mi defensa al empezar es 0.
-        return 0 + bonusArmadura;
+            .filter(producto => producto.tipo === TIPOS.ARMADURA)
+            .reduce((acumulador, producto) => acumulador + producto.bonus, 0);
+        return this.defensaBase + bonusArmadura;
     }
 
       // Calculo cuánta vida tengo en total.
-     getVidaTotal() {
-        // Sumé los bonus que dan los objetos de tipo Consumible.
+    getVidaTotal() {
         const bonusVida = this.inventario
-        .filter(producto => producto.tipo === TIPOS.CONSUMIBLE)
-        .reduce((acumulador, producto) => acumulador + producto.bonus, 0);
-        // El total es mi vida base 100 más la vida extra que me dan los consumibles.
+            .filter(producto => producto.tipo === TIPOS.CONSUMIBLE)
+            .reduce((acumulador, producto) => acumulador + producto.bonus, 0);
         return this.vidaBase + bonusVida;
     }
 }

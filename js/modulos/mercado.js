@@ -11,7 +11,6 @@ import { Producto } from '../clases/Producto.js';
  * @param {Object} base - Objeto con los datos base del producto
  * @returns {Producto} Nueva instancia de Producto
  */
-// Función crearProductoDesdeBase la usé para que crear un objeto Producto a partir de los datos base fuera más rápido.
 function crearProductoDesdeBase(base) {
     return new Producto(base);
 }
@@ -19,22 +18,24 @@ function crearProductoDesdeBase(base) {
 // Función obtenerProductosConDescuentoAleatorio
 // Lo que hice aquí fue preparar la lista de productos que el jugador verá en la tienda.
 // Aplico un descuento especial a los productos de una rareza elegida al azar.
-//  y asi muestra una lista de objetos Producto.
+// y asi muestra una lista de objetos Producto.
 
 export function obtenerProductosConDescuentoAleatorio() {
-    //Elegí una rareza al azar Común, Rara, o Épica de la lista RAREZAS.
+    // Elegí una rareza al azar Común, Rara, o Épica de la lista RAREZAS.
     const rarezaObjetivo = RAREZAS[Math.floor(Math.random() * RAREZAS.length)];
-    const porcentajeDescuento = 0.13; // Mi descuento especial es del 13%.
+    const porcentajeDescuento = 0.20; // Mi descuento especial es del 20%.
 
+    console.log(`🎯 Descuento del 20% aplicado a productos de rareza: ${rarezaObjetivo}`);
 
-
-    //Recorrí todos los productos base con map para crear las tarjetas.
+    // Recorrí todos los productos base con map para crear las tarjetas.
     return PRODUCTOS_BASE.map(productoBase => {
         const producto = crearProductoDesdeBase(productoBase);
         // Si la rareza del producto coincide con la que elegí al azar
         if (productoBase.rareza === rarezaObjetivo) {
-            // ... le aplico el descuento especial del 13%.
-            return producto.aplicarDescuento(porcentajeDescuento);
+            // ... le aplico el descuento especial del 20%.
+            const productoConDescuento = producto.aplicarDescuento(porcentajeDescuento);
+            console.log(`✅ Descuento aplicado a: ${producto.nombre} - De ${producto.precio}€ a ${productoConDescuento.precio}€`);
+            return productoConDescuento;
         }
         // Si no coincide, devuelvo el producto normal sin descuento.
         return producto;
@@ -47,7 +48,6 @@ export function obtenerProductosConDescuentoAleatorio() {
  * @param {string} rareza - La rareza por la que filtrar ('Comun', 'Rara', 'Epica')
  * @returns {Array<Producto>} Array de productos filtrados
  */
-//funcion filtrarPorRareza la hice para poder filtrar una lista de productos por su rareza (si fuera necesario).
 export function filtrarPorRareza(productos, rareza) {
     return productos.filter(producto => producto.rareza === rareza);
 }
@@ -58,16 +58,12 @@ export function filtrarPorRareza(productos, rareza) {
  * @param {string} nombre - El nombre del producto a buscar
  * @returns {Producto|undefined} El producto encontrado o undefined
  */
-// Función auxiliar: la hice para poder buscar un producto por su nombre (aunque no la usé en el archivo principal).
 export function buscarPorNombre(productos, nombre) {
     return productos.find(producto => producto.nombre.toLowerCase() === nombre.toLowerCase());
 }
 
 // Función renderizarProductos
-//  Me encargo de dibujar todas las tarjetas de los productos en la pantalla del Mercado.
-//productos: La lista de productos que telamo cuando el jugador pulsa Añadir o Retirar para que se actualice la cesta.
-//seleccionados: Una lista con los nombres ngo que dibujar.
-//alHacerToggle: Es la función clave que lde los productos que ya están en la cesta para marcarlos.
+// Me encargo de dibujar todas las tarjetas de los productos en la pantalla del Mercado.
 
 /**
  * Renderiza las tarjetas de productos en el mercado
@@ -82,15 +78,39 @@ export function renderizarProductos(productos, alHacerToggle, seleccionados = ne
     productos.forEach(producto => {
         const tarjeta = document.createElement('div');
         tarjeta.className = 'product-card';
+        
+        // Crear el HTML con o sin indicador de descuento
+        let precioHTML = '';
+        if (producto.tieneDescuento) {
+            // Mostrar precio original tachado y nuevo precio
+            precioHTML = `
+                <p>
+                    <strong>Precio:</strong> 
+                    <span style="text-decoration: line-through; color: #888; font-size: 14px;">
+                        ${producto.precioOriginal.toFixed(2).replace('.', ',')} €
+                    </span>
+                    <span style="color: #c41e3a; font-weight: bold; font-size: 18px;">
+                        ${producto.formatearPrecio()}
+                    </span>
+                    <span style="background: #c41e3a; color: white; padding: 2px 6px; border-radius: 3px; font-size: 12px; margin-left: 5px;">
+                        -20%
+                    </span>
+                </p>
+            `;
+        } else {
+            // Precio normal sin descuento
+            precioHTML = `<p><strong>Precio:</strong> ${producto.formatearPrecio()}</p>`;
+        }
+        
         // Pongo el contenido HTML de la tarjeta con la imagen, nombre, bonus y precio.
         tarjeta.innerHTML = `
             <img src="${producto.imagen}" alt="${producto.nombre}" />
-                <h4>${producto.nombre}</h4>
-                <p><strong>Bonus:</strong> ${producto.bonus}</p>
-                <p><strong>Precio:</strong> ${producto.formatearPrecio()}</p>
-                <p><strong>Rareza:</strong> ${producto.rareza}</p>
-                <button class="btn-toggle">Añadir</button>
-            `;
+            <h4>${producto.nombre}</h4>
+            <p><strong>Bonus:</strong> ${producto.bonus}</p>
+            ${precioHTML}
+            <p><strong>Rareza:</strong> ${producto.rareza}</p>
+            <button class="btn-toggle">Añadir</button>
+        `;
 
         const boton = tarjeta.querySelector('.btn-toggle');
 
@@ -117,7 +137,6 @@ export function renderizarProductos(productos, alHacerToggle, seleccionados = ne
 
 // Función renderizarCesta
 // Dibuje un resumen simple de los productos que el jugador ha seleccionado.
-// Así recibe la lista de productos que tengo que dibujar productosCesta.
 
 /**
  * Renderiza un resumen de los productos en la cesta
@@ -134,7 +153,7 @@ export function renderizarCesta(productosCesta) {
         tarjeta.innerHTML = `
             <h4>${producto.nombre}</h4>
             <p>${producto.tipo} (+${producto.bonus})</p>
-            `;
-            contenedor.appendChild(tarjeta);
+        `;
+        contenedor.appendChild(tarjeta);
     });
 }
