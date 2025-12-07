@@ -371,4 +371,5 @@ function quitarDelInventarioVisual(nombreProducto) {
   cargarInventario(estado.inventarioVisual);
 }
 
+
 init();

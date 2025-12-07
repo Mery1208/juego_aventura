@@ -34,20 +34,6 @@ export function resetearMonedas() {
 }
 
 export function crearInterfazMonedero() {
-    let monedero = document.getElementById('monedero-container');
- 
-    if (!monedero) {
-        monedero = document.createElement('div');
-        monedero.id = 'monedero-container';
-        monedero.className = 'monedero';
-        monedero.innerHTML = `
-          <div class="monedero-icono">💰</div>
-          <div class="monedero-cantidad" id="monedero-cantidad">0</div>
-        `;
-        
-        document.body.appendChild(monedero);
-    }
-    
     actualizarInterfazMonedero();
 }
 

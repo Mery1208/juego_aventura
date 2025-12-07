@@ -148,10 +148,10 @@ export function obtenerEstadisticasHistorial() {
   };
 }
 
+// ========== RENDERIZAR TABLA SEGÚN PDF - EXAMEN ==========
 export function renderizarTablaHistorial() {
   const tbody = document.getElementById('tabla-body');
   const contenedorTabla = document.getElementById('contenedor-tabla');
-  
   const btnLimpiar = document.getElementById('btn-limpiar-historial');
 
   const historial = obtenerHistorial();
@@ -163,34 +163,15 @@ export function renderizarTablaHistorial() {
   } else {
     if (contenedorTabla) contenedorTabla.classList.remove('oculto');
 
+    // Renderizar solo Jugador, Puntos y Monedas según el PDF
     historial.forEach(partida => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${partida.fecha.split(',')[0]}</td>
         <td>${partida.nombreJugador}</td>
         <td style="color: var(--color-boton); font-weight: bold;">${partida.puntos}</td>
-        <td><span class="badge-rango ${partida.rango.toLowerCase()}">${partida.rango}</span></td>
         <td>${partida.monedas}</td>
-        <td>${partida.enemigosVencidos}</td>
-        <td>${partida.duracion} min</td>
-        <td>
-          <button class="btn-eliminar" data-id="${partida.id}">Borrar</button>
-        </td>
       `;
       tbody.appendChild(tr);
-    });
-  }
-
-  if (tbody) {
-    tbody.querySelectorAll('.btn-eliminar').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        const id = parseInt(e.target.dataset.id);
-        if (confirm('¿Eliminar esta partida?')) {
-          eliminarPartida(id);
-          renderizarTablaHistorial(); 
-          renderizarEstadisticas();   
-        }
-      });
     });
   }
 
