@@ -286,6 +286,15 @@ function iniciarSiguienteCombate() {
     sumarMonedas(monedasGanadas);
   }
   
+  setTimeout(() => {
+      const monedas = document.querySelectorAll('.moneda-cayendo');
+      monedas.forEach(moneda => {
+        moneda.style.animation = 'none';
+        moneda.offsetHeight; 
+        moneda.style.animation = '';
+      });
+    }, 100);
+  
   estado.indiceEnemigoActual++;
 
   const btn = document.getElementById('btn-siguiente-combate');
@@ -309,26 +318,36 @@ function finalizarJuego() {
     }, 250);
   }
   
-  const distinguirJugadorLocal = (p, u = 500) => (p >= u ? 'Veterano' : 'Novato');
-  const importPromise = import('./modulos/ranking.js').then(mod => ({ fn: mod.distinguirJugador || distinguirJugadorLocal })).catch(() => ({ fn: distinguirJugadorLocal }));
+  function calcularRango(puntos) {
+    if (puntos >= 500) {
+      return 'Veterano';
+      } else {
+      return 'Novato';
+      }
+    }
+
+  const rango = calcularRango(puntosFinales);
+  document.getElementById('final-rango').textContent = `El jugador ha subido de nivel ${rango}.`;
+
+  //  Calculo el tiempo total que duró la partida en minutos
+  let tiempoTotal = 0;
+  if (estado.tiempoInicio) {
+    const tiempoEnMilisegundos = Date.now() - estado.tiempoInicio;
+    tiempoTotal = Math.floor(tiempoEnMilisegundos / 60000); // Convertir a minutos
+  }
   
-  Promise.race([importPromise, new Promise(r => setTimeout(() => r({fn: distinguirJugadorLocal}), 5000))])
-    .then(result => {
-      const rango = result.fn(puntosFinales);
-      document.getElementById('final-rango').textContent = `El Jugador ha subido al nivel ${rango}.`;
-      
-      const tiempoTotal = estado.tiempoInicio ? Math.floor((Date.now() - estado.tiempoInicio) / 60000) : 0;
-      
-      const partida = new Partida(
-        estado.datosPersonaje || { nombre: 'Cazador', clase: 'Desconocido' },
-        puntosFinales,
-        rango,
-        estado.indiceEnemigoActual,
-        monedasRestantes,
-        tiempoTotal
-      );
-      guardarPartida(partida);
-    });
+// Creo el objeto de partida con todos los datos
+  const partida = new Partida(
+    estado.datosPersonaje || { nombre: 'Cazador', clase: 'Desconocido' },
+    puntosFinales,
+    rango,
+    estado.indiceEnemigoActual,
+    monedasRestantes,
+    tiempoTotal
+  );
+  
+  // Guardo la partida en localStorage
+  guardarPartida(partida);
 }
 
 function mostrarRankingConsola() {

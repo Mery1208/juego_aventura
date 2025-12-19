@@ -2,11 +2,11 @@
 
 @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
 
- 
+
 /* aqui le dejo el enlace del porfolio */
 /* https://mery1208.github.io/PortfolioMery/ */
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,7 +14,7 @@
 
 
 /* Variables - GUIA DE ESTILO */
-:root{
+:root {
   /* Colores principales */
   --secondary-color: #c9a86a;
   --primary-color: #5a4532;
@@ -23,33 +23,39 @@
   --color-boton: #f4d03f;
   --color-boton-hover: #f5d957;
   --color-gris-oscuro: #3d2c1f;
-  --color-carta-seleccionada: #b8a066; 
-  
+  --color-carta-seleccionada: #b8a066;
+
   /* Espaciados */
   --espacio-pequeno: 8px;
   --espacio-medio: 16px;
   --espacio-grande: 24px;
-  
+
   /* Bordes */
   --borde-grosor: 3px;
   --borde-radio: 6px;
-  
+
   /* Fuente medieval */
   --fuente-medieval: 'MedievalSharp', cursive;
   --fuente-normal: Arial, sans-serif;
-  
+
   /* Jerarquía Tipográfica */
-  --font-h1: 32px;        /* Títulos principales */
-  --font-h2: 28px;        /* Subtítulos importantes */
-  --font-h3: 24px;        /* Títulos de sección */
-  --font-text-stats: 20px;  /* Texto de estadísticas */
-  --font-base: 16px;      /* Texto base */
-  --font-buttons: 14px;   /* Texto de botones */
+  --font-h1: 32px;
+  /* Títulos principales */
+  --font-h2: 28px;
+  /* Subtítulos importantes */
+  --font-h3: 24px;
+  /* Títulos de sección */
+  --font-text-stats: 20px;
+  /* Texto de estadísticas */
+  --font-base: 16px;
+  /* Texto base */
+  --font-buttons: 14px;
+  /* Texto de botones */
 }
 
 
-body{
-   background-color: var(--primary-color);
+body {
+  background-color: var(--primary-color);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -88,7 +94,7 @@ h4 {
 
 /* ---------------------------- HEADER --------------------------- */
 
-.scene-header{
+.scene-header {
   display: flex;
   justify-content: center;
   color: white;
@@ -106,7 +112,6 @@ h4 {
   align-items: center;
   flex-shrink: 0;
   width: 100%;
-
 }
 
 .titulo-juego {
@@ -114,18 +119,19 @@ h4 {
   color: var(--color-boton);
   text-transform: uppercase;
   letter-spacing: 4px;
-  text-shadow: 
+  text-shadow:
     3px 3px 0px var(--color-texto-oscuro),
     5px 5px 10px rgba(0, 0, 0, 0.8);
   font-weight: bold;
   text-align: center;
-  margin:0;
+  margin: 0;
 
 }
+
 /* --------------------------- CONTENEDOR JUEGO Y ESTRUCTURA PRINCIPAL ---------------------------- */
 
-#contenedor-juego{
-   display: flex;
+#contenedor-juego {
+  display: flex;
   flex-direction: column;
   width: 100%;
   flex: 1;
@@ -136,7 +142,7 @@ h4 {
 
 /* ---------------------------- FOOTER ---------------------------- */
 
-footer{
+footer {
   position: relative;
   width: 100%;
   display: flex;
@@ -144,14 +150,15 @@ footer{
   align-items: center;
   padding: 6px 0;
   border-top: var(--borde-grosor) solid var(--color-texto-oscuro);
-  flex-shrink: 0;
+  flex-shrink: 0;
+  z-index: 10000;
 
 }
 
-#inventory-container{
+#inventory-container {
   background: var(--secondary-color);
   display: grid;
-  grid-template-columns: repeat(6 , 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 19px;
   padding: 12px;
   max-width: 500px;
@@ -163,7 +170,8 @@ footer{
   border-radius: var(--borde-radio);
 }
 
-.inventario-item, .inventario-slot-vacio {
+.inventario-item,
+.inventario-slot-vacio {
   width: 100%;
   aspect-ratio: 1 / 1;
   background-color: var(--primary-color);
@@ -177,9 +185,9 @@ footer{
 
 /*  pa cuando paso el ratón por encima, el producto se agranda */
 .inventario-item:hover {
-  transform: scale(1.2); 
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5); 
-  z-index: 10; 
+  transform: scale(1.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  z-index: 10;
   cursor: pointer;
 }
 
@@ -190,10 +198,12 @@ footer{
     transform: scale(1);
     box-shadow: 0 0 0 rgba(244, 208, 63, 0);
   }
+
   50% {
     transform: scale(1.15);
     box-shadow: 0 0 20px rgba(244, 208, 63, 0.8);
   }
+
   100% {
     transform: scale(1);
     box-shadow: 0 0 0 rgba(244, 208, 63, 0);
@@ -210,9 +220,10 @@ footer{
   height: 70%;
   object-fit: contain;
 }
+
 /* ---------------------------- MAIN Y ESCENAS ---------------------------- */
 
-main{
+main {
   flex-grow: 1;
   overflow-y: hidden;
   position: relative;
@@ -220,12 +231,12 @@ main{
 
 /* las escenas ocultas por defecto */
 .scene {
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
-  display: none !important; 
+  display: none !important;
   z-index: 10;
   overflow: hidden;
 }
@@ -234,6 +245,7 @@ main{
   display: flex !important;
   flex-direction: column;
 }
+
 /*escena 0*/
 
 #escena-registro {
@@ -251,15 +263,16 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: calc(100vh - 200px);
   padding: 20px;
-  
+  box-sizing: border-box;
 }
 
 .formulario-registro {
   background: var(--secondary-color);
   border: 3px solid var(--color-texto-oscuro);
   border-radius: 8px;
-  padding: 25px 30px;
+  padding: 20px 30px;
   max-width: 500px;
   width: 100%;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
@@ -299,6 +312,40 @@ main{
   font-size: 18px;
   font-weight: bold;
   text-align: center;
+}
+
+.fila-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-item label {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--color-texto-oscuro);
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+
+.stat-item input {
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border: 2px solid var(--color-texto-oscuro);
+  border-radius: 4px;
+  background-color: #fff;
+  height: 35px;
+  box-sizing: border-box;
 }
 
 .error-msg {
@@ -353,21 +400,10 @@ main{
   margin-top: 10px;
 }
 
-/* Responsive */
-@media (max-width: 720px) {
-  .stats-inputs {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-}
 
-@media (max-width: 360px) {
-  .formulario-registro {
-    padding: 20px;
-  }
-}
 /* ---------------------------- Escena 1 y 3 ---------------------------- */
-#inicio-top-area, #estado-top-area {
+#inicio-top-area,
+#estado-top-area {
   background-color: var(--secondary-color);
   width: 100%;
   height: 180px;
@@ -379,14 +415,15 @@ main{
   position: relative;
 }
 
-#cazador-titulo, #estado-titulo {
+#cazador-titulo,
+#estado-titulo {
   color: var(--color-texto-oscuro);
   font-size: var(--font-h1);
   position: absolute;
   top: 20px;
   right: 20px;
   margin: 0;
-  text-shadow:  2px 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .jugador-avatar-large {
@@ -405,7 +442,8 @@ main{
   object-fit: cover;
 }
 
-#inicio-boton-area, #estado-boton-area {
+#inicio-boton-area,
+#estado-boton-area {
   background-color: var(--primary-color);
   width: 100%;
   flex-grow: 1;
@@ -418,7 +456,8 @@ main{
 
 /* --------Grid stats----------- */
 
-#jugador-stats-grid, #estado-stats-grid {
+#jugador-stats-grid,
+#estado-stats-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(200px, 1fr));
   gap: 25px;
@@ -443,30 +482,34 @@ main{
   font-weight: bold;
 }
 
-button, .btn-primary {
+button,
+.btn-primary {
   padding: 15px 60px;
   background-color: var(--color-boton);
-  border: none; 
-  border-radius: 3px; 
+  border: none;
+  border-radius: 3px;
   cursor: pointer;
-  font-weight: bold; 
-  font-size: var(--font-buttons); 
+  font-weight: bold;
+  font-size: var(--font-buttons);
   color: var(--color-texto-oscuro);
   font-family: var(--fuente-medieval);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
   margin: 0;
-  box-shadow:  0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   text-transform: uppercase;
   min-width: 200px;
 }
 
- /* boton se eleva al pasar el ratón */
-button:hover, .btn-primary:hover {
+/* boton se eleva al pasar el ratón */
+button:hover,
+.btn-primary:hover {
   background-color: var(--color-boton-hover);
   transform: translateY(-2px);
-  box-shadow:0 6px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
-button:active, .btn-primary:active {
+
+button:active,
+.btn-primary:active {
   transform: translateY(0);
 }
 
@@ -478,19 +521,17 @@ button:active, .btn-primary:active {
 /* ----------encabezado de los cojone---------  */
 .scene-header {
   background-color: var(--secondary-color);
-  padding: 20px 30px;
-  text-align: left;
-  flex-shrink: 0;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid var(--color-boton);
   color: var(--color-texto-oscuro);
-  font-size: var(--font-h2);
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+  min-height: 70px;
 }
 
 .mercado-titulo {
-  display: inline-block;
-  color: #000000;
-  padding: 10px 25px;
   margin: 0;
   font-size: var(--font-h2);
   font-weight: bold;
@@ -499,14 +540,26 @@ button:active, .btn-primary:active {
 .scene-contenido {
   background-color: var(--primary-color);
   padding: 20px;
-  display: flex; 
-  flex-direction: column; 
-  align-items: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: flex-start;
-  width: 100%; 
-  height: 100%;
+  width: 100%;
+  flex: 1;
   gap: 15px;
   overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.monedas-display {
+  position: absolute;
+  right: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-texto-oscuro);
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 10px;
+  border-radius: 8px;
 }
 
 /* -----------------MERCADO-------------- */
@@ -516,6 +569,7 @@ button:active, .btn-primary:active {
   max-width: 1000px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-auto-rows: 1fr;
   gap: 20px;
 }
 
@@ -530,16 +584,17 @@ button:active, .btn-primary:active {
   gap: 8px;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.2s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  height: 100%;
 }
 
 .product-card:hover {
-  transform: translateY(-8px); 
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5); 
-  background: #f0e0b8; 
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  background: #f0e0b8;
 }
 
-.product-card.selected { 
-  background: var(--color-carta-seleccionada); 
+.product-card.selected {
+  background: var(--color-carta-seleccionada);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -563,19 +618,20 @@ button:active, .btn-primary:active {
 .product-card .btn-toggle {
   padding: 10px 20px;
   background-color: var(--color-boton);
-  border: none; 
+  border: none;
   border-radius: 3px;
   cursor: pointer;
-  font-weight: bold; 
+  font-weight: bold;
   font-size: var(--font-buttons);
   color: var(--color-texto-oscuro);
   font-family: var(--fuente-medieval);
   transition: transform 0.2s ease, background-color 0.2s ease;
+  margin-top: auto;
 }
 
-.product-card .btn-toggle:hover { 
+.product-card .btn-toggle:hover {
   background-color: var(--color-boton-hover);
-  transform: scale(1.05); 
+  transform: scale(1.05);
 }
 
 /* ------ animacion cuando añado el producto--------- */
@@ -584,9 +640,11 @@ button:active, .btn-primary:active {
     opacity: 0;
     transform: scale(0.5) translateY(-20px);
   }
+
   50% {
-    transform: scale(1.1); 
+    transform: scale(1.1);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -623,12 +681,12 @@ button:active, .btn-primary:active {
 
 .grid-cesta {
   width: 100%;
-  display:grid;
+  display: grid;
   gap: 12px;
   grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   min-height: 100px;
   padding: 15px;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
 
@@ -665,8 +723,8 @@ button:active, .btn-primary:active {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.btn-comprar:active { 
-  transform: translateY(0); 
+.btn-comprar:active {
+  transform: translateY(0);
 }
 
 .mercado-footer .btn-primary {
@@ -679,7 +737,7 @@ button:active, .btn-primary:active {
 /* Dejo scroll solo en la escena Mercado */
 #escena-mercado .scene-contenido {
   overflow-y: auto;
-  padding-bottom: 140px; 
+  padding-bottom: 140px;
 }
 
 
@@ -687,13 +745,13 @@ button:active, .btn-primary:active {
 .monedero-bolsa {
   display: flex;
   align-items: left;
-  justify-content:left;
+  justify-content: left;
   width: 100px;
   height: 100px;
 }
 
 .monedero-bolsa img {
- position: absolute;
+  position: fixed;
   width: 100px;
   height: 100px;
   object-fit: cover;
@@ -701,8 +759,23 @@ button:active, .btn-primary:active {
   border-radius: 8px;
 }
 
+.resumen-oferta {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  border-radius: 6px;
+}
 
+.oferta-wrapper {
+  width: 80%;
+  max-width: 1000px
+}
 
+.oferta-wrapper p {
+  color: #fff;
+  margin-bottom: 8px; 
+  font-weight: bold
+}
 /* --------Enemigos-------- tarjetas --------- */
 
 .grid-enemigos {
@@ -730,15 +803,15 @@ button:active, .btn-primary:active {
 
 .enemy-card:hover {
   transform: translateY(-10px);
-  box-shadow:  0 16px 32px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.6);
   background: #f0e0b8;
 }
 
 
 .enemy-card img {
   width: 100%;
-  height: 160px; 
-  object-fit: contain; 
+  height: 160px;
+  object-fit: contain;
   margin-bottom: 10px;
 }
 
@@ -765,10 +838,10 @@ button:active, .btn-primary:active {
 }
 
 .combatiente {
-display: flex;
-flex-direction: column;
-align-items: center;
-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
 }
 
 .combatiente img {
@@ -787,12 +860,13 @@ width: 200px;
 /* jugador sale de la derecha  */
 @keyframes slideInFromRight {
   from {
-   
+
     transform: translateX(100vw);
     opacity: 0;
   }
+
   to {
-    
+
     transform: translateX(0);
     opacity: 1;
   }
@@ -801,12 +875,13 @@ width: 200px;
 /* enemigo sale de la izquierda */
 @keyframes slideInFromLeft {
   from {
-    
+
     transform: translateX(-100vw);
     opacity: 0;
   }
+
   to {
-   
+
     transform: translateX(0);
     opacity: 1;
   }
@@ -844,11 +919,15 @@ width: 200px;
 }
 
 /* pa que el footer no tape los botones  */
-#escena-batallas .scene-contenido, #escena-final .scene-contenido {
+#escena-batallas .scene-contenido,
+#escena-final .scene-contenido {
   padding-bottom: 140px;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
-#escena-inicio, #escena-estado {
+#escena-inicio,
+#escena-estado {
   box-sizing: border-box;
   padding-bottom: 140px;
 }
@@ -875,7 +954,9 @@ width: 200px;
   min-width: 200px;
 }
 
-/* =========== 3. TABLA HISTORIAL - EXAMEN =========== */
+
+
+/*  TABLA HISTORIAL  */
 .tabla-container {
   width: 90%;
   max-width: 800px;
@@ -884,6 +965,8 @@ width: 200px;
   border-radius: var(--borde-radio);
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .tabla-container.oculto {
@@ -896,10 +979,13 @@ width: 200px;
   font-family: var(--fuente-medieval);
 }
 
-/* Cabecera de la tabla - Color diferente según PDF */
+/* Cabecera de la tabla */
 .tabla-historial thead {
   background-color: var(--color-gris-oscuro);
   color: var(--color-boton);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .tabla-historial th {
@@ -916,12 +1002,12 @@ width: 200px;
   text-align: center;
   color: var(--color-texto-oscuro);
   font-size: 14px;
-  background-color: var(--color-stats-caja);
   border-bottom: 2px solid var(--secondary-color);
 }
 
 .tabla-historial tbody tr:hover {
-  background-color: #e0c080;
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 /* Botones del historial */
@@ -973,6 +1059,7 @@ width: 200px;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
 /* -----escena FINAL------- */
 #escena-final {
   background-color: var(--secondary-color);
@@ -987,15 +1074,15 @@ width: 200px;
 }
 
 #escena-final .scene-contenido {
- background-color: var(--color-gris-oscuro);
+  background-color: var(--color-gris-oscuro);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 40px; 
+  padding: 60px 40px;
   height: 100%;
-  width: 100%;        
-  border: var(--borde-grosor) solid var(--color-texto-oscuro); 
+  width: 100%;
+  border: var(--borde-grosor) solid var(--color-texto-oscuro);
 }
 
 #escena-final .scene-contenido h3 {
@@ -1032,8 +1119,8 @@ width: 200px;
 /* -------------monedero--------- */
 .monedero-container {
   position: fixed;
-  bottom: 1vh; 
-  left: 2vw;   
+  bottom: 1vh;
+  left: 2vw;
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -1041,18 +1128,21 @@ width: 200px;
   animation: slideInMonedero 1s ease-out forwards;
   transform: translateX(-200px);
 }
+
 @keyframes slideInMonedero {
   from {
     transform: translateX(-200px);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
   }
 }
+
 .monedero-container img {
-  width: 100px;
+  width: 80px;
   height: auto;
   position: relative;
 }
@@ -1077,8 +1167,8 @@ width: 200px;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 9999;
-  display: none; 
+  z-index: 100;
+  display: none;
 }
 
 #escena-batallas.scene.active .monedas-cayendo-container {
@@ -1117,16 +1207,19 @@ width: 200px;
     opacity: 1;
     transform: translateX(-50%) rotate(0deg);
   }
+
   70% {
     opacity: 1;
   }
+
   100% {
-    top: 50vh;  
+    top: 50vh;
     opacity: 0;
     transform: translateX(-50%) rotate(360deg);
   }
 
 }
+
 /* ---------------LAS MEDIAS -------------------- */
 /* Media query para pantallas pequeñas (360px) */
 @media (max-width: 360px) {
@@ -1135,199 +1228,205 @@ width: 200px;
     letter-spacing: 1px;
     padding: 10px;
   }
-  
+
   #titulo-principal {
     padding: 10px;
   }
-  
+
   /* REGISTRO */
   #escena-registro .scene-contenido {
     overflow-y: auto;
     padding: 10px;
   }
-  
+
   .formulario-registro {
     padding: 15px;
     max-width: 100%;
   }
-  
+
   .form-group label {
     font-size: 13px;
   }
-  
+
   .form-group input {
     padding: 8px 10px;
     font-size: 14px;
   }
-  
+
   .puntos-display span {
     font-size: 18px;
   }
-  
+
   /* STATS GRIDS */
-  #jugador-stats-grid, #estado-stats-grid { 
+  #jugador-stats-grid,
+  #estado-stats-grid {
     grid-template-columns: 1fr;
     gap: 15px;
   }
-  
+
   .stat-box {
     padding: 15px 10px;
     font-size: 16px;
   }
-  
+
   /* INICIO Y ESTADO */
-  #inicio-top-area, #estado-top-area { 
-    justify-content: center; 
-    align-items: center; 
-    height: auto; 
+  #inicio-top-area,
+  #estado-top-area {
+    justify-content: center;
+    align-items: center;
+    height: auto;
     flex-direction: column;
     padding: 10px;
   }
-  
-  #cazador-titulo, #estado-titulo { 
-    align-self: center; 
-    position: static; 
-    margin-right: 0; 
+
+  #cazador-titulo,
+  #estado-titulo {
+    align-self: center;
+    position: static;
+    margin-right: 0;
     margin-bottom: 10px;
     font-size: 20px;
     top: auto;
     right: auto;
   }
-  
-  .jugador-avatar-large { 
-    margin-left: 0; 
+
+  .jugador-avatar-large {
+    margin-left: 0;
     margin-right: 0;
     width: 100px;
     height: 100px;
   }
 
-  #escena-inicio, #escena-estado {
+  #escena-inicio,
+  #escena-estado {
     overflow-y: auto;
   }
-  
-  #inicio-boton-area, #estado-boton-area {
+
+  #inicio-boton-area,
+  #estado-boton-area {
     padding: 20px 10px;
     min-height: auto;
   }
 
   /* MERCADO */
-  .grid-productos { 
+  .grid-productos {
     grid-template-columns: 1fr;
     width: 100%;
   }
-  
+
   .product-card {
     padding: 10px;
   }
-  
+
   #oferta-wrapper {
     width: 100% !important;
     padding: 0 10px;
   }
-  
+
   .monedas-display {
     font-size: 14px;
   }
-  
+
   /* ENEMIGOS */
-  .grid-enemigos { 
+  .grid-enemigos {
     grid-template-columns: 1fr;
     width: 100%;
   }
-  
+
   .enemy-card {
     padding: 15px;
     min-height: 240px;
   }
-  
+
   .enemy-card img {
     height: 120px;
   }
-  
+
   /* COMBATES */
   #escena-batallas .scene-contenido {
     overflow-y: auto;
     padding: 10px 10px 140px 10px;
   }
-  
+
   .combate-visual {
     flex-direction: column;
     gap: 20px;
     overflow: visible;
     margin: 10px 0;
   }
-  
+
   .combatiente {
     width: 150px;
   }
-  
+
   .combatiente img {
     width: 140px;
     height: 140px;
   }
-  
+
   .versus {
     font-size: 24px;
   }
-  
+
   .resultado-combate p {
     font-size: 18px;
   }
-  
+
   #btn-siguiente-combate {
     margin-top: 20px;
     padding: 12px 30px;
   }
-  
+
 
 
   /* HISTORIAL */
   #escena-historial .scene-contenido {
     overflow-y: auto;
     padding: 10px 10px 140px 10px;
-    
+
   }
-  
+
   .tabla-container {
     width: 100%;
     overflow-x: auto;
   }
-  
+
   .tabla-historial {
     font-size: 12px;
     min-width: 600px;
   }
-  
+
   .tabla-historial th,
   .tabla-historial td {
     padding: 8px 4px;
   }
-  
+
   .historial-footer {
     flex-direction: column;
     gap: 10px;
     padding: 10px;
   }
-  
-  .btn-danger, .btn-secondary {
+
+  .btn-danger,
+  .btn-secondary {
     width: 100%;
     max-width: 250px;
   }
-  
+
   /* FINAL */
   #escena-final .scene-contenido {
     padding: 30px 20px;
   }
-  
+
   #escena-final .scene-contenido h3 {
     font-size: 20px;
   }
-  
+
   #escena-final .scene-contenido p {
     font-size: 16px;
     margin-bottom: 20px;
   }
-  
+
   /* INVENTARIO */
   #inventory-container {
     grid-template-columns: repeat(3, 1fr);
@@ -1336,47 +1435,50 @@ width: 200px;
     padding: 6px;
     min-height: 20px;
   }
-  
-  .inventario-item, .inventario-slot-vacio {
+
+  .inventario-item,
+  .inventario-slot-vacio {
     width: 100%;
     aspect-ratio: 1 / 1;
   }
-  
+
   .inventario-item img {
     width: 60%;
     height: 60%;
   }
-  
+
   footer {
     padding: 4px 0;
   }
-  
+
   /* BOTONES */
-  button, .btn-primary, .btn-comprar {
+  button,
+  .btn-primary,
+  .btn-comprar {
     padding: 12px 30px;
     min-width: 150px;
     font-size: 12px;
   }
-  
+
   .scene-header {
     padding: 15px 10px;
     font-size: 18px;
   }
-  
+
   .scene-contenido {
     padding: 10px;
   }
-  
+
   .grid-cesta {
     grid-template-columns: repeat(2, 1fr);
     padding: 10px;
   }
-  
+
   .cesta-wrapper {
     width: 100%;
     padding: 0 10px;
   }
-  
+
   .mercado-footer {
     flex-direction: column;
     gap: 10px;

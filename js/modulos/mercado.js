@@ -25,7 +25,7 @@ export function obtenerProductosConDescuentoAleatorio() {
     const rarezaObjetivo = RAREZAS[Math.floor(Math.random() * RAREZAS.length)];
     const porcentajeDescuento = 0.20; // Mi descuento especial es del 20%.
 
-    console.log(`🎯 Descuento del 20% aplicado a productos de rareza: ${rarezaObjetivo}`);
+    console.log(` Descuento del 20% aplicado a productos de rareza: ${rarezaObjetivo}`);
 
     // Recorrí todos los productos base con map para crear las tarjetas.
     return PRODUCTOS_BASE.map(productoBase => {
@@ -34,7 +34,7 @@ export function obtenerProductosConDescuentoAleatorio() {
         if (productoBase.rareza === rarezaObjetivo) {
             // ... le aplico el descuento especial del 20%.
             const productoConDescuento = producto.aplicarDescuento(porcentajeDescuento);
-            console.log(`✅ Descuento aplicado a: ${producto.nombre} - De ${producto.precio}€ a ${productoConDescuento.precio}€`);
+            console.log(` Descuento aplicado a: ${producto.nombre} - De ${producto.precio}€ a ${productoConDescuento.precio}€`);
             return productoConDescuento;
         }
         // Si no coincide, devuelvo el producto normal sin descuento.

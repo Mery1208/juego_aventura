@@ -13,12 +13,6 @@
     <h1 class="titulo-juego">Aventuras En El Reino De MeryLand</h1>
   </header>
 
-  <!-- MONEDERO -->
-  <div class="monedero-container">
-    <img src="./img/moneda/monedero.png" alt="monedero">
-    <div class="monedero-cantidad" id="monedero-cantidad">500</div>
-  </div>
-
   <div id="contenedor-juego">
     <!-- ESCENA 0: REGISTRO -->
     <section id="escena-registro" class="scene active">
@@ -27,25 +21,28 @@
       </div>
       <div class="scene-contenido">
         <form id="form-registro" class="formulario-registro">
+
           <div class="form-group">
             <label for="input-nombre">Nombre del Cazador:</label>
-            <input type="text" id="input-nombre" required maxlength="20" placeholder="Tu nombre..." />
+            <input type="text" id="input-nombre" required maxlength="20" placeholder="Pon tu apodo..." />
             <span id="error-nombre" class="error-msg"></span>
           </div>
 
-          <div class="form-group">
-            <label for="input-ataque">Ataque (0-10):</label>
-            <input type="number" id="input-ataque" min="0" max="10" value="0" required />
-          </div>
+          <div class="fila-stats">
+            <div class="stat-item">
+              <label for="input-ataque">Ataque</label>
+              <input type="number" id="input-ataque" min="0" max="10" value="0" required />
+            </div>
 
-          <div class="form-group">
-            <label for="input-defensa">Defensa (0-10):</label>
-            <input type="number" id="input-defensa" min="0" max="10" value="0" required />
-          </div>
+            <div class="stat-item">
+              <label for="input-defensa">Defensa</label>
+              <input type="number" id="input-defensa" min="0" max="10" value="0" required />
+            </div>
 
-          <div class="form-group">
-            <label for="input-vida">Vida (100-110):</label>
-            <input type="number" id="input-vida" min="100" max="110" value="100" required />
+            <div class="stat-item">
+              <label for="input-vida">Vida</label>
+              <input type="number" id="input-vida" min="100" max="110" value="100" required />
+            </div>
           </div>
 
           <div class="form-group">
@@ -102,29 +99,22 @@
         <div id="lista-productos" class="grid-productos"></div>
 
         <!-- RESUMEN DE OFERTA -->
-        <div id="oferta-wrapper" style="width: 80%; max-width: 1000px">
-          <p style="color: #fff; margin-bottom: 8px; font-weight: bold">
+        <div id="oferta-wrapper">
+          <p>
             Oferta: 20% descuento en todos los productos seleccionados
           </p>
-          <div id="resumen-oferta" style="
-                color: #fff;
-                background: rgba(0, 0, 0, 0.15);
-                padding: 10px;
-                border-radius: 6px;
-              ">
+          <div id="resumen-oferta">
             <p>Total seleccionado: <span id="total-seleccion">0 €</span></p>
             <p>Descuento aplicado: <span id="total-descuento">0 €</span></p>
-            <p>
-              Total con descuento: <span id="total-con-descuento">0 €</span>
+            <p>Total con descuento: <span id="total-con-descuento">0 €</span>
             </p>
           </div>
         </div>
       </div>
-      <div class="mercado-footer">
+            <div class="mercado-footer">
         <button id="btn-ir-estado" class="btn-primary">Continuar</button>
       </div>
-  </div>
-  </section>
+    </section>
 
   <!-- ESCENA 3: PERFIL ACTUALIZADO -->
   <section id="escena-estado" class="scene">
@@ -239,6 +229,11 @@
 
   <!-- FOOTER - INVENTARIO -->
   <footer>
+    <!-- MONEDERO -->
+    <div class="monedero-container">
+      <img src="./img/moneda/monedero.png" alt="monedero">
+      <div class="monedero-cantidad" id="monedero-cantidad">500</div>
+    </div>
     <div id="inventory-container">
       <div class="inventario-slot-vacio"></div>
       <div class="inventario-slot-vacio"></div>

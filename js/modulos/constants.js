@@ -21,7 +21,6 @@ export const MAX_INVENTARIO = 6;
 export const PRODUCTOS_BASE = [
     // ARMADURAS: Me dan bonus de Defensa (el valor de bonus).
   { nombre: 'Casco', imagen: './img/productos/armadura/casco.png', precio: 90, rareza: 'Comun', tipo: 'Armadura', bonus: 10 },
-  { nombre: 'Mochila', imagen: './img/productos/armadura/mochila.png', precio: 70, rareza: 'Rara', tipo: 'Armadura', bonus: 5 },
   { nombre: 'Botas', imagen: './img/productos/armadura/botas.png', precio: 50, rareza: 'Comun', tipo: 'Armadura', bonus: 12 },
   { nombre: 'Pantalón', imagen: './img/productos/armadura/pantalon.png', precio: 80, rareza: 'Comun', tipo: 'Armadura', bonus: 15 },
   { nombre: 'Pechera', imagen: './img/productos/armadura/pechera.png', precio: 160, rareza: 'Epica', tipo: 'Armadura', bonus: 20 },
@@ -36,14 +35,13 @@ export const PRODUCTOS_BASE = [
   // CONSUMIBLES: Me dan bonus de Vida extra (el valor de bonus).
   { nombre: 'Manzana curativa', imagen: './img/productos/consumibles/manzana.png', precio: 40, rareza: 'Comun', tipo: 'Consumible', bonus: 10 },
   { nombre: 'Poción', imagen: './img/productos/consumibles/pocion.png', precio: 60, rareza: 'Rara', tipo: 'Consumible', bonus: 12 },
-  { nombre: 'Botiquín', imagen: './img/productos/consumibles/botiquin.png', precio: 85, rareza: 'Rara', tipo: 'Consumible', bonus: 20 },
   { nombre: 'Hierbas', imagen: './img/productos/consumibles/hierbas.png', precio: 30, rareza: 'Comun', tipo: 'Consumible', bonus: 6 },
   { nombre: 'Pan', imagen: './img/productos/consumibles/pan.png', precio: 15, rareza: 'Comun', tipo: 'Consumible', bonus: 4 }
 ];
 
 export const ENEMIGOS_BASE = [
      // Enemigos normales (solo tienen ataque y vida).
-  { nombre: 'Pandilleros', imagen: './img/enemigos/pandilleros.png', ataque: 10, vida: 40 },
+  { nombre: 'Pandilleros', imagen: './img/enemigos/pandilleros.webp', ataque: 10, vida: 40 },
   { nombre: 'Lobo', imagen: './img/enemigos/lobo.png', ataque: 25, vida: 50 },
   { nombre: 'Ogro', imagen: './img/enemigos/ogro.png', ataque: 31, vida: 60 },
   // El último es el JEFE (tiene 'jefe: true' y un multiplicador de daño extra).
