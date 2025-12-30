@@ -30,7 +30,6 @@ export const PRODUCTOS_BASE = [
   { nombre: 'Hacha', imagen: './img/productos/armas/hacha.png', precio: 100, rareza: 'Rara', tipo: 'Arma', bonus: 7 },
   { nombre: 'Espada', imagen: './img/productos/armas/espada.png', precio: 110, rareza: 'Comun', tipo: 'Arma', bonus: 6 },
   { nombre: 'Arco', imagen: './img/productos/armas/arco.png', precio: 95, rareza: 'Comun', tipo: 'Arma', bonus: 5 },
-  { nombre: 'Lanza', imagen: './img/productos/armas/lanza.png', precio: 120, rareza: 'Rara', tipo: 'Arma', bonus: 8 },
 
   // CONSUMIBLES: Me dan bonus de Vida extra (el valor de bonus).
   { nombre: 'Manzana curativa', imagen: './img/productos/consumibles/manzana.png', precio: 40, rareza: 'Comun', tipo: 'Consumible', bonus: 10 },

@@ -3,11 +3,10 @@ import { Jugador } from './clases/Jugador.js';
 import { showScene, inicializarInventarioVacio, cargarInventario } from './modulos/Utils.js';
 import { Enemigo } from './clases/Enemigo.js';
 import { Jefe } from './clases/Jefe.js';
-import { Producto } from './clases/Producto.js';
 import { PRODUCTOS_BASE, ENEMIGOS_BASE, MAX_INVENTARIO } from './modulos/constants.js';
 import { obtenerProductosConDescuentoAleatorio, renderizarProductos } from './modulos/mercado.js';
 import { combate } from './modulos/batalla.js';
-import { mostrarFormularioRegistro, cargarPersonajeGuardado, tienePersonajeGuardado } from './modulos/formulario_registro.js';
+import { mostrarFormularioRegistro } from './modulos/formulario_registro.js';
 import { guardarPartida, Partida, renderizarTablaHistorial, renderizarEstadisticas } from './modulos/historial_partidas.js';
 
 const estado = {
