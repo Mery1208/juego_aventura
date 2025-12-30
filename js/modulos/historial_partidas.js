@@ -25,10 +25,12 @@ export function guardarPartida(partida) {
   }
   
   localStorage.setItem(STORAGE_KEY, JSON.stringify(historial));
+
+  mostrarRankingEnConsola();
   return historial;
 }
 
-// Obtener historial desde localStorage
+//Obtener historial desde localStorage
 export function obtenerHistorial() {
   const datos = localStorage.getItem(STORAGE_KEY);
   if (datos) {
@@ -44,11 +46,29 @@ export function limpiarHistorial() {
   return [];
 }
 
-// Renderizar tabla con colores alternados (beige/marrón)
+// Mostrar ranking automáticamente en consola
+export function mostrarRankingEnConsola() {
+  const historial = obtenerHistorial();
+  
+  console.log('RANKING DE PARTIDAS');
+  
+  if (historial.length === 0) {
+    console.log('No hay partidas registradas aún');
+  } else {
+    const ranking = [...historial].sort((a, b) => b.puntos - a.puntos);
+    
+    ranking.forEach((partida, index) => {
+      console.log(`${index + 1}. ${partida.nombreJugador}`);
+      console.log(`   Puntos: ${partida.puntos} | Rango: ${partida.rango} | Monedas: ${partida.monedas}`);
+      console.log(`   Enemigos vencidos: ${partida.enemigosVencidos} | Fecha: ${partida.fecha}`);
+    });
+  }
+}
+
+// Renderizar tabla con colores DEPENDIENDO SI ES PAR O IMPAR
 export function renderizarTablaHistorial() {
   const tbody = document.getElementById('tabla-body');
   const contenedorTabla = document.getElementById('contenedor-tabla');
-  const btnLimpiar = document.getElementById('btn-limpiar-historial');
 
   const historial = obtenerHistorial();
 
@@ -60,7 +80,21 @@ export function renderizarTablaHistorial() {
     if (contenedorTabla) {
       contenedorTabla.classList.add('oculto');
     }
+    
+    // Mostrar mensaje cuando no hay partidas
+    const escenaHistorial = document.querySelector('#escena-historial .scene-contenido');
+    if (escenaHistorial && !document.getElementById('mensaje-sin-partidas')) {
+      const mensaje = document.createElement('div');
+      mensaje.id = 'mensaje-sin-partidas';
+      mensaje.style.cssText = 'color: white; text-align: center; padding: 40px; font-size: 18px;';
+      mensaje.textContent = 'No hay partidas registradas aún.';
+      escenaHistorial.insertBefore(mensaje, escenaHistorial.firstChild);
+    }
   } else {
+    // Eliminar mensaje si existe
+    const mensaje = document.getElementById('mensaje-sin-partidas');
+    if (mensaje) mensaje.remove();
+    
     if (contenedorTabla) {
       contenedorTabla.classList.remove('oculto');
     }
@@ -80,29 +114,15 @@ export function renderizarTablaHistorial() {
       
       tr.style.backgroundColor = colorFondo;
       
-      // Solo mostrar: Nombre, Puntos, Monedas
+      //  mostrar: Nombre, Puntos, Monedas
       tr.innerHTML = `
         <td>${partida.nombreJugador}</td>
-        <td style="color: var(--color-texto-oscuro); font-weight: bold;">${partida.puntos}</td>
-        <td>${partida.monedas}</td>
+        <td style="color: var(--color-texto-oscuro); font-weight: bold; font-size: 16px;">${partida.puntos}</td>
+        <td style="color: var(--color-texto-oscuro);">${partida.monedas}</td>
       `;
       
       tbody.appendChild(tr);
     }
-  }
-
-  // Botón para limpiar historial
-  if (btnLimpiar) {
-    btnLimpiar.onclick = function() {
-      if (historial.length > 0) {
-        const confirmar = confirm('¿Borrar todo el historial permanentemente?');
-        if (confirmar) {
-          limpiarHistorial();
-          renderizarTablaHistorial();
-          renderizarEstadisticas();
-        }
-      }
-    };
   }
 }
 
