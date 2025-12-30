@@ -99,128 +99,125 @@
         <div id="lista-productos" class="grid-productos"></div>
 
         <!-- RESUMEN DE OFERTA -->
-        <div id="oferta-wrapper">
-          <p>
-            Oferta: 20% descuento en todos los productos seleccionados
-          </p>
+        <div class="oferta-wrapper">
+          <p>Oferta: 20% descuento en todos los productos seleccionados</p>
           <div id="resumen-oferta">
             <p>Total seleccionado: <span id="total-seleccion">0 €</span></p>
             <p>Descuento aplicado: <span id="total-descuento">0 €</span></p>
-            <p>Total con descuento: <span id="total-con-descuento">0 €</span>
-            </p>
+            <p>Total con descuento: <span id="total-con-descuento">0 €</span></p>
           </div>
         </div>
       </div>
-            <div class="mercado-footer">
+      <div class="mercado-footer">
         <button id="btn-ir-estado" class="btn-primary">Continuar</button>
       </div>
     </section>
 
-  <!-- ESCENA 3: PERFIL ACTUALIZADO -->
-  <section id="escena-estado" class="scene">
-    <div id="estado-top-area">
-      <div class="jugador-avatar-large">
-        <img src="./img/jugador/maria.png" alt="Cazador" />
-      </div>
-      <h1 id="estado-titulo">Cazador</h1>
-    </div>
-
-    <div id="estado-boton-area">
-      <div id="estado-stats-grid">
-        <div class="stat-box">
-          <p>Ataque: <span id="estado-ataque">0</span></p>
+    <!-- ESCENA 3: PERFIL ACTUALIZADO -->
+    <section id="escena-estado" class="scene">
+      <div id="estado-top-area">
+        <div class="jugador-avatar-large">
+          <img src="./img/jugador/maria.png" alt="Cazador" />
         </div>
-        <div class="stat-box">
-          <p>Defensa: <span id="estado-defensa">0</span></p>
-        </div>
-        <div class="stat-box">
-          <p>Vida: <span id="estado-vida">0</span></p>
-        </div>
-        <div class="stat-box">
-          <p>Monedas: <span id="estado-monedas">500</span></p>
-        </div>
-      </div>
-      <button id="btn-ir-enemigos-2" class="btn-primary">Continuar</button>
-    </div>
-  </section>
-
-  <!-- ESCENA 4: ENEMIGOS -->
-  <section id="escena-enemigos" class="scene">
-    <div class="scene-header">
-      <h2>Enemigos</h2>
-    </div>
-    <div class="scene-contenido">
-      <div id="lista-enemigos" class="grid-enemigos"></div>
-      <button id="btn-empezar-batallas" class="btn-primary">
-        Continuar
-      </button>
-    </div>
-  </section>
-
-  <!-- ESCENA 5: COMBATES -->
-  <section id="escena-batallas" class="scene">
-    <!-- MONEDAS que bajan -->
-    <div class="monedas-cayendo-container">
-      <img src="./img/moneda/moneda.png" alt="moneda" class="moneda-cayendo moneda-1">
-      <img src="./img/moneda/moneda.png" alt="moneda" class="moneda-cayendo moneda-2">
-      <img src="./img/moneda/moneda.png" alt="moneda" class="moneda-cayendo moneda-3">
-    </div>
-
-    <div class="scene-header">
-      <h2>Combates</h2>
-    </div>
-    <div class="scene-contenido">
-      <div id="resultado-combate" class="resultado-combate"></div>
-      <button id="btn-siguiente-combate" class="btn-primary">
-        Continuar
-      </button>
-    </div>
-  </section>
-
-
-  <!-- ESCENA 6: RESULTADO FINAL -->
-  <section id="escena-final" class="scene">
-    <div class="scene-header">
-      <h2>Resultado Final</h2>
-    </div>
-    <div class="scene-contenido">
-      <h3 id="final-rango"></h3>
-      <p>Puntos totales: <span id="final-puntos">0</span></p>
-      <p>Monedas restantes: <span id="final-monedas">0</span></p>
-      <button id="btn-ir-historial-desde-final" class="btn-primary">
-        Ver Historial de Partidas
-      </button>
-    </div>
-  </section>
-
-  <!-- ESCENA 8: Ranking -->
-  <section id="escena-historial" class="scene">
-    <div class="scene-header">
-      <h2>Historial de Partidas</h2>
-    </div>
-    <div class="scene-contenido">
-
-      <div id="contenedor-tabla" class="tabla-container">
-        <table class="tabla-historial">
-          <thead>
-            <tr>
-              <th>Cazador</th>
-              <th>Puntos</th>
-              <th>Monedas</th>
-            </tr>
-          </thead>
-          <tbody id="tabla-body">
-
-          </tbody>
-        </table>
+        <h1 id="estado-titulo">Cazador</h1>
       </div>
 
-      <div class="historial-footer">
-        <button id="btn-historial-a-inicio" class="btn-secondary">Volver al Inicio</button>
+      <div id="estado-boton-area">
+        <div id="estado-stats-grid">
+          <div class="stat-box">
+            <p>Ataque: <span id="estado-ataque">0</span></p>
+          </div>
+          <div class="stat-box">
+            <p>Defensa: <span id="estado-defensa">0</span></p>
+          </div>
+          <div class="stat-box">
+            <p>Vida: <span id="estado-vida">0</span></p>
+          </div>
+          <div class="stat-box">
+            <p>Monedas: <span id="estado-monedas">500</span></p>
+          </div>
+        </div>
+        <button id="btn-ir-enemigos-2" class="btn-primary">Continuar</button>
+      </div>
+    </section>
+
+    <!-- ESCENA 4: ENEMIGOS -->
+    <section id="escena-enemigos" class="scene">
+      <div class="scene-header">
+        <h2>Enemigos</h2>
+      </div>
+      <div class="scene-contenido">
+        <div id="lista-enemigos" class="grid-enemigos"></div>
+        <button id="btn-empezar-batallas" class="btn-primary">
+          Continuar
+        </button>
+      </div>
+    </section>
+
+    <!-- ESCENA 5: COMBATES -->
+    <section id="escena-batallas" class="scene">
+      <!-- MONEDAS que bajan -->
+      <div class="monedas-cayendo-container">
+        <img src="./img/moneda/moneda.png" alt="moneda" class="moneda-cayendo moneda-1">
+        <img src="./img/moneda/moneda.png" alt="moneda" class="moneda-cayendo moneda-2">
+        <img src="./img/moneda/moneda.png" alt="moneda" class="moneda-cayendo moneda-3">
       </div>
 
-    </div>
-  </section>
+      <div class="scene-header">
+        <h2>Combates</h2>
+      </div>
+      <div class="scene-contenido">
+        <div id="resultado-combate" class="resultado-combate"></div>
+        <button id="btn-siguiente-combate" class="btn-primary">
+          Continuar
+        </button>
+      </div>
+    </section>
+
+
+    <!-- ESCENA 6: RESULTADO FINAL -->
+    <section id="escena-final" class="scene">
+      <div class="scene-header">
+        <h2>Resultado Final</h2>
+      </div>
+      <div class="scene-contenido">
+        <h3 id="final-rango"></h3>
+        <p>Puntos totales: <span id="final-puntos">0</span></p>
+        <p>Monedas restantes: <span id="final-monedas">0</span></p>
+        <button id="btn-ir-historial-desde-final" class="btn-primary">
+          Ver Historial de Partidas
+        </button>
+      </div>
+    </section>
+
+    <!-- ESCENA 8: Ranking -->
+    <section id="escena-historial" class="scene">
+      <div class="scene-header">
+        <h2>Historial de Partidas</h2>
+      </div>
+      <div class="scene-contenido">
+
+        <div id="contenedor-tabla" class="tabla-container">
+          <table class="tabla-historial">
+            <thead>
+              <tr>
+                <th>Cazador</th>
+                <th>Puntos</th>
+                <th>Monedas</th>
+              </tr>
+            </thead>
+            <tbody id="tabla-body">
+
+            </tbody>
+          </table>
+        </div>
+
+        <div class="historial-footer">
+          <button id="btn-historial-a-inicio" class="btn-secondary">Volver al Inicio</button>
+        </div>
+
+      </div>
+    </section>
   </div>
 
   <!-- FOOTER - INVENTARIO -->
@@ -245,4 +242,5 @@
 
   <script type="module" src="./js/main.js"></script>
 </body>
+
 </html>
