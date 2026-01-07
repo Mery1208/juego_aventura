@@ -15,47 +15,53 @@ export class Partida {
   }
 }
 
-// 2. OBTENER HISTORIAL (Con tu lógica de datos iniciales)
+// 2. OBTENER HISTORIAL - SIEMPRE con datos de ejemplo
 export function obtenerHistorial() {
   const datos = localStorage.getItem(STORAGE_KEY);
   
+  // Aquí pongo los datos de ejemplo que siempre quiero que aparezcan
+  // para que se vea el scroll y la tabla con contenido
+  const ejemplos = [
+    new Partida({nombre: 'Eve'}, 850, 'Veterano', 4, 250, 15),
+    new Partida({nombre: 'Elias'}, 720, 'Veterano', 4, 180, 12),
+    new Partida({nombre: 'Enrique'}, 650, 'Veterano', 3, 200, 14),
+    new Partida({nombre: 'Alberto'}, 480, 'Novato', 2, 100, 10),
+    new Partida({nombre: 'Aitor'}, 420, 'Novato', 2, 90, 11),
+    new Partida({nombre: 'Pablo'}, 950, 'Veterano', 4, 300, 18),
+    new Partida({nombre: 'Borja'}, 380, 'Novato', 2, 80, 9),
+    new Partida({nombre: 'Merry'}, 320, 'Novato', 1, 60, 8)
+  ];
+  
   if (datos) {
-    // Si ya existen datos, los devolvemos
-    return JSON.parse(datos);
+    // Si ya hay partidas guardadas, las saco del localStorage
+    const partidasGuardadas = JSON.parse(datos);
+    // Filtro para quedarme solo con las partidas que jugué yo (no los ejemplos)
+    const misPartidas = partidasGuardadas.filter(p => 
+      !['Eve', 'Elias', 'Enrique', 'Alberto', 'Aitor', 'Pablo', 'Borja', 'Merry'].includes(p.nombreJugador)
+    );
+    // Devuelvo primero mis partidas y luego los ejemplos para que siempre haya datos
+    return [...misPartidas, ...ejemplos];
   } else {
-    // Si NO hay datos, creamos los ejemplos, los guardamos y los devolvemos
-    const ejemplos = [
-      new Partida({nombre: 'Aragorn'}, 850, 'Veterano', 4, 250, 15),
-      new Partida({nombre: 'Legolas'}, 720, 'Veterano', 4, 180, 12),
-      new Partida({nombre: 'Gimli'}, 650, 'Veterano', 3, 200, 14),
-      new Partida({nombre: 'Frodo'}, 480, 'Novato', 2, 100, 10),
-      new Partida({nombre: 'Sam'}, 420, 'Novato', 2, 90, 11),
-      new Partida({nombre: 'Gandalf'}, 950, 'Veterano', 4, 300, 18),
-      new Partida({nombre: 'Boromir'}, 380, 'Novato', 2, 80, 9),
-      new Partida({nombre: 'Merry'}, 320, 'Novato', 1, 60, 8)
-    ];
-    
-    // IMPORTANTE: Guardamos esto en localStorage para que persista
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(ejemplos));
+    // Si no hay nada guardado, devuelvo solo los ejemplos
     return ejemplos;
   }
 }
 
 // 3. GUARDAR PARTIDA
 export function guardarPartida(partida) {
-  // Obtenemos el historial actual (que traerá los ejemplos si estaba vacío)
+  // Obtengo el historial actual (que traerá los ejemplos si estaba vacío)
   const historial = obtenerHistorial();
   
-  // Añadimos la nueva partida al principio
+  // Añado la nueva partida al principio
   historial.unshift(partida);
 
-  // Si nos pasamos del máximo, borramos las antiguas
+  // Si nos paso del máximo, borramos las antiguas
   if (historial.length > MAX_PARTIDAS) {
-    historial.splice(MAX_PARTIDAS); // Corta el array al tamaño máximo
+    historial.splice(MAX_PARTIDAS); // Corto el array al tamaño máximo
   }
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(historial));
-  mostrarRankingEnConsola(); // Opcional: ver en consola
+  mostrarRankingEnConsola(); 
   return historial;
 }
 
@@ -70,14 +76,14 @@ export function renderizarTablaHistorial() {
   const tbody = document.getElementById('tabla-body');
   const contenedorTabla = document.getElementById('contenedor-tabla');
 
-  // Aquí llamamos a tu función que ya trae los datos de Aragorn si es necesario
+  // Aquí llamamos a tu función que ya trae los datos de Eve si es necesario
   const historial = obtenerHistorial();
 
   if (tbody) {
     tbody.innerHTML = '';
   }
 
-  // Manejo de "Sin partidas"
+  // Parte de tocar de "Sin partidas"
   if (historial.length === 0) {
     if (contenedorTabla) contenedorTabla.classList.add('oculto');
     
@@ -91,18 +97,18 @@ export function renderizarTablaHistorial() {
       escenaHistorial.insertBefore(mensaje, escenaHistorial.firstChild);
     }
   } else {
-    // Si hay datos, limpiamos mensajes de error y mostramos tabla
+    // Si hay datos, limpio mensajes de error y muestro tabla
     const mensaje = document.getElementById('mensaje-sin-partidas');
     if (mensaje) mensaje.remove();
 
     if (contenedorTabla) contenedorTabla.classList.remove('oculto');
 
-    // Dibujamos las filas
+    // Dibujo las filas
     for (let i = 0; i < historial.length; i++) {
       const partida = historial[i];
       const tr = document.createElement('tr');
 
-      // Colores alternos: par = beige, impar = marrón
+      // Colores de la tabla diferentes: par = beige, impar = marrón
       let colorFondo = (i % 2 === 0) ? '#d8c392' : '#b8a066';
       tr.style.backgroundColor = colorFondo;
 
@@ -117,7 +123,7 @@ export function renderizarTablaHistorial() {
   }
 }
 
-// 6. EXTRAS (Consola y estadísticas)
+// 6. MOSTRAR RANKING EN CONSOLA
 export function mostrarRankingEnConsola() {
   const historial = obtenerHistorial();
   console.log('RANKING DE PARTIDAS');
