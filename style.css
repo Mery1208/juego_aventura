@@ -154,6 +154,56 @@ footer {
   z-index: 10000;
 
 }
+.mensaje-secret {
+  position: fixed;
+  bottom: -80px; 
+  right: 20px;
+  width: 100px;
+  background: #939292;
+  color: rgb(0, 0, 0);
+  padding: 15px;
+  border-radius: 10px 10px 0 0;
+  transition: bottom 0.4s ease;
+}
+
+.mensaje-secret h3 {
+  margin: -10px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.mensaje-secret p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.mensaje-secret:hover {
+  bottom: 0; 
+}
+
+.estrellas-container {
+  position: fixed;
+  top: 18px;
+  right: 20px;
+  display: flex;
+  gap: 15px; 
+}
+
+.estrella {
+  width: 40px;
+  height: 40px;
+  background: #f4d03f;
+  clip-path: polygon(
+    50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+    50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%
+  );
+  animation: girar 4s linear infinite;
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
 
 #inventory-container {
   background: var(--secondary-color);
